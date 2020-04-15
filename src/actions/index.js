@@ -1,3 +1,5 @@
+import { getLetterMatchCount } from "../helpers";
+
 export const actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
   GUESS_WORD: "GUESS_WORD",
@@ -10,5 +12,7 @@ export const actionTypes = {
  * @returns {function} - Redux Thunk function.
  */
 export const guessWord = (guessedWord) => {
-  return function (dispatch, getState) {};
+  return function (dispatch, getState) {
+    const secretWord = getState().secretWord;
+  };
 };
