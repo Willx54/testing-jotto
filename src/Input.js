@@ -34,7 +34,7 @@ export class UnconnectedInput extends Component {
           data-test="input-box"
           className="mb-2 mx-sm-3"
           type="text"
-          value="this.state.currentGuess"
+          value={this.state.currentGuess}
           onChange={(e) => this.setState({ currentGuess: e.target.value })}
           placeholder="enter guess"
         />
