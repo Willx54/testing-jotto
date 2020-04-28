@@ -36,4 +36,13 @@ describe("state controlled input field", () => {
 
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("train");
   });
+  test("setCurrentGuess gets called when submit button clicked", () => {
+    const mockSetCurrentGuess = jest.fn();
+    React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
+
+    const wrapper = setup();
+    const submitButton = findByTestAttr(wrapper, "submit-button");
+
+    submitButton.simulate("click", "");
+  });
 });
