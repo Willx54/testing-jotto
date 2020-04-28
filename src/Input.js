@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Input() {
+function Input({ secretWord }) {
   return <div data-test="component-input"></div>;
 }
 
 export default Input;
 
 Input.propTypes = {
-  word: PropTypes.string.isRequired,
+  secretWord: PropTypes.string.isRequired,
 };
