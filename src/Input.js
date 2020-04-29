@@ -19,8 +19,11 @@ function Input({ secretWord }) {
         <button
           data-test="submit-button"
           className="btn btn-primary mb-2"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={(evt) => {
+            evt.preventDefault();
+            // TO DO - update guessedWords context
+            // TO DO - check against secretWord and optionally update success context
+            setCurrentGuess("");
           }}
         >
           Submit
