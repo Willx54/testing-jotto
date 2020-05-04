@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import hookActions from "./actions/hookActions";
 
+import Input from "./Input";
+
 /**
  * Reducer to update state, called automatically by dispatch
  * @param state {object} - existing state
@@ -27,7 +29,11 @@ function App() {
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord);
   }, []);
-  return <div data-test="component-app"></div>;
+  return (
+    <div data-test="component-app">
+      <Input secretWord={state.secretWord} />
+    </div>
+  );
 }
 
 export default App;
