@@ -12,8 +12,10 @@ import Input from "./Input";
  * @returns {object} - new state
  */
 function reducer(state, action) {
+  console.log("action: ", action);
   switch (action.type) {
     case "setSecretWord":
+      console.log("action.payload: ", action.payload);
       return { ...state, secretWord: action.payload };
     default:
       throw new Error(`Invalid action type: ${action.type}`);
@@ -29,8 +31,20 @@ function App() {
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord);
   }, []);
+
+  if (!state.secretWord) {
+    return (
+      <div className="container" data-test="spinner">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+        <p>Loading secret word</p>
+      </div>
+    );
+  }
+
   return (
-    <div data-test="component-app">
+    <div className="container" data-test="component-app">
       <Input secretWord={state.secretWord} />
     </div>
   );
