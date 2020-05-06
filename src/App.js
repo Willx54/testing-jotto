@@ -12,7 +12,7 @@ import Input from "./Input";
  * @returns {object} - new state
  */
 function reducer(state, action) {
-  console.log("action: ", action);
+  console.log("action: ", action.type);
   switch (action.type) {
     case "setSecretWord":
       console.log("action.payload: ", action.payload);
@@ -26,7 +26,7 @@ function App() {
   const [state, dispatch] = React.useReducer(reducer, { secretWord: null });
 
   const setSecretWord = (secretWord) =>
-    dispatch({ type: "setSecretWord ", payload: secretWord });
+    dispatch({ type: "setSecretWord", payload: secretWord });
 
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord);
