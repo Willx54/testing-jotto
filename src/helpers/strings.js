@@ -8,7 +8,7 @@ const languageStrings = {
     guessedWords: "Guesses",
     matchingLettersColumnHeader: "Matching Letters",
   },
-  chinese: {
+  cn: {
     congrats: "恭喜你！ 你猜对了",
     submit: "提交",
     guessPrompt: "尝试猜测这个秘密词！",

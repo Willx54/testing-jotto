@@ -5,7 +5,7 @@ import { findByTestAttr, checkProps } from "../test/testUtils";
 import GuessedWords from "./GuessedWords";
 
 const defaultProps = {
-  GuessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
+  GuessedWords: [{ guessedWord: "train", letterMatchCount: 3 }],
 };
 /**
  * Factory function to create a ShallowWrapper for the GuessedWords component.
@@ -42,7 +42,7 @@ describe("if there are words guessed", () => {
   const guessedWords = [
     { guessedWord: "train", letterMatchCount: 3 },
     { guessedWord: "agile", letterMatchCount: 1 },
-    { guessedWord: "party", letterMatchCount: 5 }
+    { guessedWord: "party", letterMatchCount: 5 },
   ];
   beforeEach(() => {
     wrapper = setup({ guessedWords });
@@ -58,5 +58,20 @@ describe("if there are words guessed", () => {
   test("correct number of guessed words", () => {
     const guessedWordNode = findByTestAttr(wrapper, "guessed-word");
     expect(guessedWordNode.length).toBe(guessedWords.length);
+  });
+});
+
+describe("languagePicker", () => {
+  test("correctly renders guess instructions string in English by default", () => {
+    const wrapper = setup({ guessedWords: [] });
+    const guessInstructions = findByTestAttr(wrapper, "guess-instructions");
+    expect(guessInstructions.text()).toBe("Try to guess the secret word!");
+  });
+  test("correctly renders guess instructions string in chinese", () => {
+    const mockUseContext = jest.fn().mockReturnValue("chinese");
+    React.useContext = mockUseContext;
+    const wrapper = setup({ guessedWords: [] });
+    const guessInstructions = findByTestAttr(wrapper, "guess-instructions");
+    expect(guessInstructions.text()).toBe("尝试猜测这个秘密词！");
   });
 });
