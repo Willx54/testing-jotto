@@ -15,7 +15,7 @@ function Input({ secretWord }) {
           className="mb-2 mx-sm-3"
           type="text"
           placeholder={stringsModule.getStringByLanguage(
-            languageContext,
+            language,
             "guessInputPlaceholder"
           )}
           value={currentGuess}
