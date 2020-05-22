@@ -63,7 +63,7 @@ describe("languagePicker", () => {
     expect(submitButton.text()).toBe("Submit");
   });
   test("correctly renders congrats string in chinese", () => {
-    const wrapper = setup({ language: "chinese" });
+    const wrapper = setup({ language: "cn" });
     const submitButton = findByTestAttr(wrapper, "submit-button");
     expect(submitButton.text()).toBe("提交");
   });

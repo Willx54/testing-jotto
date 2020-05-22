@@ -68,7 +68,7 @@ describe("languagePicker", () => {
     expect(guessInstructions.text()).toBe("Try to guess the secret word!");
   });
   test("correctly renders guess instructions string in chinese", () => {
-    const mockUseContext = jest.fn().mockReturnValue("chinese");
+    const mockUseContext = jest.fn().mockReturnValue("cn");
     React.useContext = mockUseContext;
     const wrapper = setup({ guessedWords: [] });
     const guessInstructions = findByTestAttr(wrapper, "guess-instructions");

@@ -29,7 +29,7 @@ describe("languagePicker", () => {
     expect(wrapper.text()).toBe("Congratulations! You guessed the word!");
   });
   test("correctly renders congrats string in chinese", () => {
-    const wrapper = setup({ success: true, language: "chinese" });
+    const wrapper = setup({ success: true, language: "cn" });
     expect(wrapper.text()).toBe("恭喜你！ 你猜对了");
   });
 });
