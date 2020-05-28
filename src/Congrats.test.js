@@ -4,6 +4,7 @@ import { shallow, mount } from "enzyme";
 import { findByTestAttr } from "../test/testUtils";
 import Congrats from "./Congrats";
 import languageContext from "./contexts/languageContext";
+import successContext from "./contexts/successContext";
 
 /**
  * Factory function to create a ShallowWrapper for the Congrats compoent.
@@ -16,7 +17,9 @@ const setup = ({ success, language }) => {
   success = success || false;
   return mount(
     <languageContext.Provider value={language}>
-      <Congrats />
+      <successContext.SuccessProvider value={[success, jest.fn()]}>
+        <Congrats />
+      </successContext.SuccessProvider>
     </languageContext.Provider>
   );
 };
