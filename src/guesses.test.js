@@ -68,6 +68,11 @@ describe("test word guesses", () => {
         const guessedWordsTableRows = findByTestAttr(wrapper, "guessed-word");
         expect(guessedWordsTableRows.length).toBe(2);
       });
+      // my test
+      test("test guessedWords contains one row", () => {
+        const guessedWordsTableRows = findByTestAttr(wrapper, "guessed=word");
+        expect(guessedWordsTableRows.length).toBe(1);
+      });
     });
   });
 });
