@@ -35,6 +35,10 @@ function Input({ secretWord }) {
             evt.preventDefault();
             // TO DO - update guessedWords context
             // TO DO - check against secretWord and optionally update success context
+            if (currentGuess === secretWord) {
+              setSuccess(true);
+            }
+            // clearing input box
             setCurrentGuess("");
           }}
         >
