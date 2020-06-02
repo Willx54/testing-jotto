@@ -2,11 +2,10 @@ import React from "react";
 import { mount } from "enzyme";
 import { findByTestAttr } from "../test/testUtils";
 
-import guessedWordsContext from "./contexts/successContext";
+import guessedWordsContext from "./contexts/guessedWordsContext";
 import successContext from "./contexts/successContext";
 import Input from "./Input";
 import GuessedWords from "./GuessedWords";
-import { GuessedWordsProvider } from "./contexts/guessedWordsContext";
 
 function setup(guessedWordsStrings = [], secretWord = "party") {
   const wrapper = mount(
@@ -21,13 +20,12 @@ function setup(guessedWordsStrings = [], secretWord = "party") {
   const inputBox = findByTestAttr(wrapper, "input-box");
   const submitButton = findByTestAttr(wrapper, "submit-button");
 
-  // prepopulate guessedWords context by simulating word guess
+  // prepopulate guessedWords context by simulating word guessedWords
   guessedWordsStrings.map((word) => {
     const mockEvent = { target: { value: word } };
     inputBox.simulate("change", mockEvent);
     submitButton.simulate("click");
   });
-
   return [wrapper, inputBox, submitButton];
 }
 
@@ -50,7 +48,7 @@ describe("test word guesses", () => {
         const inputComponent = findByTestAttr(wrapper, "component-input");
         expect(inputComponent.children().length).toBe(0);
       });
-      test("GuessedWords table row count refelects updated guess", () => {
+      test("GuessedWords table row count reflects updated guess", () => {
         const guessedWordsTableRows = findByTestAttr(wrapper, "guessed-word");
         expect(guessedWordsTableRows.length).toBe(2);
       });
@@ -64,15 +62,22 @@ describe("test word guesses", () => {
       test("Input box remains", () => {
         expect(inputBox.exists()).toBe(true);
       });
-      test("GuessedWords table row count refelects updated guess", () => {
+      test("GuessedWords table row count reflects updated guess", () => {
         const guessedWordsTableRows = findByTestAttr(wrapper, "guessed-word");
         expect(guessedWordsTableRows.length).toBe(2);
       });
-      // my test
-      test("test guessedWords contains one row", () => {
-        const guessedWordsTableRows = findByTestAttr(wrapper, "guessed=word");
-        expect(guessedWordsTableRows.length).toBe(1);
-      });
+    });
+  });
+  describe("empty guessWords", () => {
+    beforeEach(() => {
+      [wrapper, inputBox, submitButton] = setup([], "party");
+    });
+    test("guessedWords shows correct guesses after incorrect guess", () => {
+      const mockEvent = { target: { value: "train" } };
+      inputBox.simulate("change", mockEvent);
+      submitButton.simulate("click");
+      const guessedWordsTableRows = findByTestAttr(wrapper, "guessed-word");
+      expect(guessedWordsTableRows.length).toBe(1);
     });
   });
 });
